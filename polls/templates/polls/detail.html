@@ -3,7 +3,7 @@
 
 {% if error_message %} <p><strong>{{ error_message }}</strong></p> {% endif %}
 
-<form action="{% url 'polls:vote' 6 question.id %}" method="post">
+<form action="{% url 'polls:vote' question.id 6 %}" method="post">
     {% csrf_token %}
 
     {% for choice in question.choice_set.all %}
