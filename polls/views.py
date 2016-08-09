@@ -1,5 +1,6 @@
 # from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import loader
 from .models import Question
 # Create your views here.
 
@@ -7,7 +8,12 @@ from .models import Question
 def index(request):
     lasted_question_list = Question.objects.order_by('-pub_date')[0:5]
     output = ', '.join([q.question_text for q in lasted_question_list])
-    return HttpResponse(output)
+    template = loader.get_template('polls/index.html')
+    content = {
+        'latest_question_list': lasted_question_list
+    }
+
+    return HttpResponse(template.render(content, request))
 
 
 def detail(request, question_id):
