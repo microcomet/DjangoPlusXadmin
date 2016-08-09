@@ -27,5 +27,7 @@ def results(request, question_id):
     return HttpResponse(response % question_id)
 
 
-def vote(request, question_id):
+def vote(request, question_id, question_id2):
+    print question_id
+    print question_id2
     return HttpResponse("You're voting on question %s." % question_id)
